@@ -42,7 +42,7 @@ An Android application written in [Kotlin](https://kotlinlang.org) with [Jetpack
 
 ### Client
 
-> Note: This project has only been built on MacOS 12.0.1 yet.
+> Note: This project has only been built on MacOS(12.0.1) and Windows 11(22000.348).
 
 1. Copy or link protocol buffer files to `android/src/main/proto` directory
 2. Import project to [Android Studio](https://developer.android.com/studio/projects/android-studio) and sync project with gradle
