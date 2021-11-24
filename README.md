@@ -23,15 +23,22 @@ An Android application written in [Kotlin](https://kotlinlang.org) with [Jetpack
 > If Go is not installed, please check the [installation guide](https://go.dev/doc/install) first.
 
 1. Download `protoc`'s latest version from [here](https://github.com/protocolbuffers/protobuf/releases)
-2. Download `protoc-gen-go` plugin and other dependencies with Go package manager
+
+2. Download `protoc-gen-go` plugin and `grpc` with Go package manager
     ```
     go get -u google.golang.org/grpc
-    go get -u google.golang.org/protobuf
-    go get -u google.golang.org/protobuf/protoc-gen-go
+    go get -u github.com/golang/protobuf/protoc-gen-go
     ```
     You could find `protoc-gen-go.exe` under `GOPATH/bin`
+    
 3. Use `protoc` to generate `*.pb.go` files and put them under `Server/api` directory
-4. Use `go run main.go` to quickly start a server or `go build -o server main.go` to build a server binary
+
+    ```
+    mkdir ../Server/api
+    protoc --go_out=plugins=grpc:../Server/api *.proto
+    ```
+
+4. Use `go run main.go` to quickly start a server or `go build` to build a server binary
 
 ### Client
 
@@ -45,6 +52,7 @@ An Android application written in [Kotlin](https://kotlinlang.org) with [Jetpack
 
 * [Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview)
 * [gRPC Document](https://www.grpc.io/docs/)
+* [Go 中的 gRPC 入门详解 - 痴者工良 - 博客园 (cnblogs.com)](https://www.cnblogs.com/whuanle/p/14588031.html)
 
 ## License
 
