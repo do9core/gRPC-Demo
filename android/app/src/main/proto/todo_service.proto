@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package xyz.do9core.proto_todo;
+
+import "todo_item.proto";
+
+option go_package = "../Server/api";
+
+option java_package = "xyz.do9core.proto_todo.service";
+option java_multiple_files = true;
+
+service TodoService {
+  rpc ListTodos(ListTodoRequest) returns (ListTodoResponse) {}
+  rpc CompleteTodo(CompleteTodoRequest) returns (CompleteTodoResponse) {}
+  rpc DeCompleteTodo(DeCompleteTodoRequest) returns (DeCompleteTodoResponse) {}
+  rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  rpc TodoDetail(TodoDetailRequest) returns (TodoDetailResponse) {}
+  rpc CompleteTodoStep(CompleteTodoStepRequest) returns (CompleteTodoStepResponse) {}
+  rpc DeCompleteTodoStep(DeCompleteTodoStepRequest) returns (DeCompleteTodoStepResponse) {}
+  rpc UpdateTodoStep(UpdateTodoStepRequest) returns (UpdateTodoStepResponse) {}
+  rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {}
+  rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse) {}
+  rpc CreateTodoStep(CreateTodoStepRequest) returns (CreateTodoStepResponse) {}
+  rpc DeleteTodoStep(DeleteTodoStepRequest) returns (DeleteTodoStepResponse) {}
+}
+
+message ListTodoRequest {}
+
+message ListTodoResponse {
+  repeated TodoSummary todos = 1;
+}
+
+message CompleteTodoRequest {
+  int64 id = 1;
+}
+
+message DeCompleteTodoRequest {
+  int64 id = 1;
+}
+
+message CompleteTodoResponse {}
+
+message DeCompleteTodoResponse {}
+
+message TodoDetailRequest {
+  int64 id = 1;
+}
+
+message TodoDetailResponse {
+  TodoDetail todo = 1;
+}
+
+message CompleteTodoStepRequest {
+  int64 todoId = 1;
+  int64 stepId = 2;
+}
+
+message CompleteTodoStepResponse {}
+
+message DeCompleteTodoStepRequest {
+  int64 todoId = 1;
+  int64 stepId = 2;
+}
+
+message DeCompleteTodoStepResponse {}
+
+message CreateTodoRequest {
+  string title = 1;
+  string description = 2;
+  repeated TodoStep steps = 3;
+}
+
+message CreateTodoResponse {
+  TodoDetail todo = 1;
+}
+
+message DeleteTodoRequest {
+  int64 id = 1;
+}
+
+message DeleteTodoResponse {}
+
+message CreateTodoStepRequest {
+  int64 todoId = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message CreateTodoStepResponse {
+  TodoStep step = 1;
+}
+
+message DeleteTodoStepRequest {
+  int64 todoId = 1;
+  int64 stepId = 2;
+}
+
+message DeleteTodoStepResponse {}
+
+message UpdateTodoRequest {
+  int64 id = 1;
+  optional string title = 2;
+  optional string description = 3;
+}
+
+message UpdateTodoResponse {
+  TodoDetail todo = 1;
+}
+
+message UpdateTodoStepRequest {
+  int64 todoId = 1;
+  int64 stepId = 2;
+  optional string title = 3;
+  optional string description = 4;
+}
+
+message UpdateTodoStepResponse {
+  TodoStep step = 1;
+}
