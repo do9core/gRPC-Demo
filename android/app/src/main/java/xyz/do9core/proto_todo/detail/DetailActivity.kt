@@ -97,7 +97,9 @@ fun TodoDetailContent(viewModel: DetailViewModel) {
                                         )
                                     }
                                 }
-                                Spacer(modifier = Modifier.height(6.dp))
+                                if (index < content.steps.lastIndex) {
+                                    Spacer(modifier = Modifier.height(6.dp))
+                                }
                             }
                         }
                     }

@@ -43,7 +43,7 @@ class Failed(val error: Throwable) : DetailContent
 
 class DetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private val stub: TodoServiceGrpcKt.TodoServiceCoroutineStub = TodoRepository.stub
+    private val stub: TodoServiceGrpcKt.TodoServiceCoroutineStub get() = TodoRepository.stub
 
     var content by mutableStateOf<DetailContent>(Loading)
 

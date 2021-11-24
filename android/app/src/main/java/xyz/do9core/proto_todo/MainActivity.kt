@@ -62,8 +62,12 @@ fun MainContent(
             .fillMaxSize()
             .padding(24.dp),
     ) {
+        Text(
+            text = "To-do",
+            style = MaterialTheme.typography.h3,
+        )
         Spacer(modifier = Modifier.height(32.dp))
-        when (val state = contentData) {
+        when (contentData) {
             NotRequested -> {
                 Text(
                     text = "Enter an id, then click button to request a todo detail.",
@@ -75,7 +79,7 @@ fun MainContent(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    itemsIndexed(state.summaryList, key = { _, item -> item.id }) { index, summary ->
+                    itemsIndexed(contentData.summaryList, key = { _, item -> item.id }) { index, summary ->
                         var updating by remember { mutableStateOf(false) }
                         Column {
                             @OptIn(ExperimentalMaterialApi::class)
@@ -123,7 +127,7 @@ fun MainContent(
                                     )
                                 }
                             }
-                            if (index < state.summaryList.size - 1) {
+                            if (index < contentData.summaryList.lastIndex) {
                                 Spacer(modifier = Modifier.height(6.dp))
                             }
                         }
@@ -138,7 +142,7 @@ fun MainContent(
                 ) {
                     var expandDetail by remember { mutableStateOf(false) }
                     Text(
-                        text = state.error.message ?: "Unknown error",
+                        text = contentData.error.message ?: "Unknown error",
                         style = MaterialTheme.typography.h6,
                         color = MaterialTheme.colors.error,
                     )
@@ -161,7 +165,7 @@ fun MainContent(
                     }
                     if (expandDetail) {
                         Text(
-                            text = state.error.stackTraceToString(),
+                            text = contentData.error.stackTraceToString(),
                             style = MaterialTheme.typography.overline,
                             color = MaterialTheme.colors.onSurface,
                             modifier = Modifier.verticalScroll(

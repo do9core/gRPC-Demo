@@ -36,7 +36,7 @@ class FailedResult(val error: Throwable) : ViewContent
 
 class MainViewModel : ViewModel() {
 
-    private val stub: TodoServiceCoroutineStub = TodoRepository.stub
+    private val stub: TodoServiceCoroutineStub get() = TodoRepository.stub
 
     var loading by mutableStateOf(false)
         private set
