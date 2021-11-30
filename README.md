@@ -35,7 +35,7 @@ An Android application written in [Kotlin](https://kotlinlang.org) with [Jetpack
 
     ```
     mkdir ../Server/api
-    protoc --go_out=plugins=grpc:../Server/api *.proto
+    protoc --go_out=plugins=grpc:../Server *.proto
     ```
 
 4. Use `go run main.go` to quickly start a server or `go build` to build a server binary
